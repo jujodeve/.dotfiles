@@ -218,13 +218,30 @@ chr systemctl enable fstrim.timer
 chr systemctl enable NetworkManager
 chr systemctl enable ntpdate
 
-echo "bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)" > /mnt/home/jotix/arch-user-install.sh
-chmod +x /mnt/home/jotix/arch-user-install.sh
-chr chown jotix /home/jotix/arch-user-install.sh
+echo "
+#!/bin/bash
+# Check if the system has been booted before
+if [ -f /run/user/1000/tty1started ]; then
+    # If not the first boot, proceed to normal login
+    /usr/bin/agetty --noclear tty1 $TERM
+else
+    # If the first boot, log in the user
+    /usr/bin/agetty --autologin jotix --noclear tty1 $TERM
+    # Create a file to indicate that the system has been booted
+    date > /run/user/1000/tty1started
+    # execute the arch-user-install script
+    bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)
+fi" > /mnt/home/jotix/.tty1
+chmod +x /mnt/home/jotix/.tty1
+
+echo "
+[Service]
+ExecStart=
+ExecStart=/home/jotix/.tty1
+" > /mnt/etc/systemd/system/getty@tty1.service.d/autologin.conf
 
 ### unmount & reboot
 echo "Installation finished, you can do some final asjustements now or reboot and use the new system:
 > umount -R /mnt
 > reboot
-in the new system execute
-$ bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)"
+"

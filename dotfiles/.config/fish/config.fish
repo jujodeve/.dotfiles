@@ -6,8 +6,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set -g -x EDITOR helix
-set -g -x VISUAL zeditor
+set -g -x EDITOR nvim
+set -g -x VISUAL nvim
+set -g -x SYSTEMD_EDITOR nvim
 set -g -x PATH $PATH:~/.local/bin:~/.scripts
 set -g -x GOPATH ~/go
 

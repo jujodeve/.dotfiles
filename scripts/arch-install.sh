@@ -2,6 +2,22 @@
 
 set -e
 
+### set_password "message" minimun_lenght
+set_password() {
+    PASS1=""
+    PASS2=""
+    while [[ "$PASS1" != "$PASS2" ]] || [[ ${#PASS1} < $2 ]]; do
+        read -sp "$1 (minimum $2 chars): " PASS1; echo >&2
+        read -sp "confirm password: " PASS2; echo >&2
+        if  [[ "$PASS1" != "$PASS2" ]]; then
+            echo "the passwords don't match." >&2
+        elif [[ $(count_chars $PASS1) < $2 ]]; then
+            echo "the password is too short." >&2
+        fi
+    done
+    echo $PASS1
+}
+
 echo
 lsblk -o +LABEL
 echo
@@ -19,6 +35,16 @@ if [[ $HOST != "jtx" ]] && [[ $HOST != "ffm" ]]; then
     exit
 fi
 HOST=$HOST-arch
+
+echo
+ROOT_PASS=$(set_password "Enter root password" 5)
+echo
+JOTIX_PASS=$(set_password "Enter jotix password" 5)
+
+if [[ $HOST == "ffm-arch" ]]; then
+    echo
+    FILOFEM_PASS=$(set_password  "Enter filofem password" 5)
+fi
 
 echo
 read -p "The disk $DISK will be complete deleted. Continue? (yes/no): " CONTINUE
@@ -146,6 +172,7 @@ sudo
 neovim
 git
 openssh
+fish
 "
 chr pacman -S --noconfirm --needed $PACKAGES
 
@@ -174,18 +201,16 @@ options root=LABEL=Arch rootflags=subvol=/@ rootfstype=btrfs rw
 ### config sudo
 sed -i -e 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /mnt/etc/sudoers
 
-### set the password & users
-echo -e "\nSET ROOT PASSWORD\n"
-chr passwd
+### set the root password
+echo "root:$ROOT_PASS" | chr chpasswd
 
-echo -e "\nSET JOTIX PASSWORD\n"
-chr useradd -m -G wheel -s /usr/bin/fish jotix
-chr passwd jotix
+### set jotix user
+chr useradd -m -G wheel -s /bin/bash jotix
+echo "jotix:$JOTIX_PASS" | chr chpasswd jotix
 
 if [[ $HOST == "ffm-arch" ]]; then
     chr useradd -m -s /usr/bin/fish filofem
-    echo -e "\nSET FILOFEM PASSWORD"
-    chr passwd filofem
+    echo "filofem:$FILOFEM_PASS" | chr chpasswd filofem
 fi
 
 ### enable services

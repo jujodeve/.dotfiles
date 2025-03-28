@@ -37,4 +37,3 @@ gnome-extra
 sudo pacman -S --noconfirm --needed $PACKAGES
 
 sudo systemctl enable gdm
-sudo systemctl enable cups

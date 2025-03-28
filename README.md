@@ -1,93 +1,121 @@
-# arch-config
+# Jotix's Arch Linux install scripts & config - dotfiles
+
+## Arch installation
+
+Execute the installation script
+
+    bash <(curl -fsSL https://jotix.short.gy/arch-install)
+
+# General Notes
+
+## Network Printers
+
+Edit the Device URI in /etc/cups/printers.conf
+
+    .
+    .
+    DeviceURI ...........
+    .
+    .
+
+Restart cups
+
+    sudo systemctl restart cups
 
 
+Impresora Brother HL-1212W connection
 
-## Getting started
+    ipp://192.168.0.7/ipp/port1
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Impresora HPRT TP806L
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+    socket://192.168.0.2
 
-## Add your files
+## YouTube uBlock shorts filter
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+    ! Title: Hide YouTube Shorts
+    ! Description: Hide all traces of YouTube shorts videos on YouTube
+    ! Version: 1.8.0
+    ! Last modified: 2023-01-08 20:02
+    ! Expires: 2 weeks (update frequency)
+    ! Homepage: https://github.com/gijsdev/ublock-hide-yt-shorts
+    ! License: https://github.com/gijsdev/ublock-hide-yt-shorts/blob/master/LICENSE.md
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/jotix/arch-config.git
-git branch -M main
-git push -uf origin main
-```
+    ! Hide all videos containing the phrase "#shorts"
+    youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(#shorts))
+    youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(#Shorts))
+    youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(#short))
+    youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(#Short))
 
-## Integrate with your tools
+    ! Hide all videos with the shorts indicator on the thumbnail
+    youtube.com##ytd-grid-video-renderer:has([overlay-style="SHORTS"])
+    youtube.com##ytd-rich-item-renderer:has([overlay-style="SHORTS"])
+    youtube.com##ytd-video-renderer:has([overlay-style="SHORTS"])
+    youtube.com##ytd-item-section-renderer.ytd-section-list-renderer[page-subtype="subscriptions"]:has(ytd-video-renderer:has([overlay-style="SHORTS"]))
 
-- [ ] [Set up project integrations](https://gitlab.com/jotix/arch-config/-/settings/integrations)
+    ! Hide shorts button in sidebar
+    youtube.com##ytd-guide-entry-renderer:has-text(Shorts)
+    youtube.com##ytd-mini-guide-entry-renderer:has-text(Shorts)
 
-## Collaborate with your team
+    ! Hide shorts section on homepage
+    youtube.com##ytd-rich-section-renderer:has(#rich-shelf-header:has-text(Shorts))
+    youtube.com##ytd-reel-shelf-renderer:has(.ytd-reel-shelf-renderer:has-text(Shorts))
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+    ! Hide shorts tab on channel pages
+    ! Old style
+    youtube.com##tp-yt-paper-tab:has(.tp-yt-paper-tab:has-text(Shorts))
+    ! New style (2023-10)
+    youtube.com##yt-tab-shape:has-text(/^Shorts$/)
 
-## Test and Deploy
+    ! Hide shorts in video descriptions
+    youtube.com##ytd-reel-shelf-renderer.ytd-structured-description-content-renderer:has-text("Shorts remixing this video")
 
-Use the built-in continuous integration in GitLab.
+    ! Remove empty spaces in grid
+    youtube.com##ytd-rich-grid-row,#contents.ytd-rich-grid-row:style(display: contents !important)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-***
+    !!! MOBILE !!!
 
-# Editing this README
+    ! Hide all videos in home feed containing the phrase "#shorts"
+    m.youtube.com##ytm-rich-item-renderer:has(#video-title:has-text(#shorts))
+    m.youtube.com##ytm-rich-item-renderer:has(#video-title:has-text(#Shorts))
+    m.youtube.com##ytm-rich-item-renderer:has(#video-title:has-text(#short))
+    m.youtube.com##ytm-rich-item-renderer:has(#video-title:has-text(#Short))
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+    ! Hide all videos in subscription feed containing the phrase "#shorts"
+    m.youtube.com##ytm-item-section-renderer:has(#video-title:has-text(#shorts))
+    m.youtube.com##ytm-item-section-renderer:has(#video-title:has-text(#Shorts))
+    m.youtube.com##ytm-item-section-renderer:has(#video-title:has-text(#short))
+    m.youtube.com##ytm-item-section-renderer:has(#video-title:has-text(#Short))
 
-## Suggestions for a good README
+    ! Hide shorts button in the bottom navigation bar
+    m.youtube.com##ytm-pivot-bar-item-renderer:has(.pivot-shorts)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+    ! Hide all videos with the shorts indicator on the thumbnail
+    m.youtube.com##ytm-video-with-context-renderer:has([data-style="SHORTS"])
 
-## Name
-Choose a self-explaining name for your project.
+    ! Hide shorts sections
+    m.youtube.com##ytm-rich-section-renderer:has(ytm-reel-shelf-renderer:has(.reel-shelf-title-wrapper:has-text(Shorts)))
+    m.youtube.com##ytm-reel-shelf-renderer.item:has(.reel-shelf-title-wrapper:has-text(Shorts))
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+    ! Hide shorts tab on channel pages
+    m.youtube.com##.single-column-browse-results-tabs>a:has-text(Shorts)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Launch a virtual monitor with kwin_wayland
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+    export $(dbus-launch); kwin_wayland -s "wayland-1" --xwayland plasmashell
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## dd iso file in USB device
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+    dd bs=4M if=path/to/archlinux-version-x86_64.iso of=/dev/disk/by-id/usb-My_flash_drive conv=fsync oflag=direct status=progress
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## creating 7z encypted file
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+    s7z a \
+      -t7z -m0=lzma2 -mx=9 -mfb=64 \
+      -md=32m -ms=on -mhe=on -p'eat_my_shorts' \
+      archive.7z dir1
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## IP camera as webcam
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+    sudo modprobe v4l2loopbak-dkms

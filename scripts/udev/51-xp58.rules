@@ -1,0 +1,3 @@
+### XPrinter XP-58 ESC printer
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="070b", MODE="0666"
+

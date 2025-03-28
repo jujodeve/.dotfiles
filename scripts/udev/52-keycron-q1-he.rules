@@ -1,0 +1,2 @@
+### Keycron Q1 HE keyboard
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0b10", TAG+="uaccess"

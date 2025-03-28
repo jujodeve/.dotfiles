@@ -205,7 +205,7 @@ sed -i -e 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /mnt/etc/sud
 echo "root:$ROOT_PASS" | chr chpasswd
 
 ### set jotix user
-chr useradd -m -G wheel -s /bin/bash jotix
+chr useradd -m -G wheel -s /usr/bin/fish jotix
 echo "jotix:$JOTIX_PASS" | chr chpasswd jotix
 
 if [[ $HOST == "ffm-arch" ]]; then

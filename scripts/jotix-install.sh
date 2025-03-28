@@ -29,6 +29,8 @@ $SCRIPT_PATH/udev-rules-install.sh
 $SCRIPT_PATH/powerline-go-install.sh
 
 # copy filofem script
-sudo cp $SCRIPT_PATH/filofem-install.sh /home/filofem/
-sudo chown filofem /home/filofem/filofem-install.sh
+if [[ $HOSTNAME == "ffm-arch" ]]; then
+  sudo cp $SCRIPT_PATH/filofem-install.sh /home/filofem/
+  sudo chown filofem /home/filofem/filofem-install.sh
+fi
 

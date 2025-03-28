@@ -143,6 +143,9 @@ btrfs-progs
 efibootmgr
 amd-ucode
 sudo
+neovim
+git
+openssh
 "
 chr pacman -S --noconfirm --needed $PACKAGES
 

@@ -25,9 +25,6 @@ $SCRIPT_PATH/steam-install.sh
 # udev rules
 $SCRIPT_PATH/udev-rules-install.sh
 
-# powerline-go
-$SCRIPT_PATH/powerline-go-install.sh
-
 # copy filofem script
 if [[ $HOSTNAME == "ffm-arch" ]]; then
   sudo cp $SCRIPT_PATH/filofem-install.sh /home/filofem/

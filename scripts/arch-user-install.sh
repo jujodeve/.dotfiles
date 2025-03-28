@@ -17,3 +17,5 @@ git clone git@gitlab.com:jotix/arch-config $HOME/workspace/arch-config
 
 $HOME/workspace/arch-config/scripts/jotix-install.sh
 
+$HOME/workspace/arch-config/link-dotfiles.sh 
+

@@ -218,7 +218,13 @@ chr systemctl enable fstrim.timer
 chr systemctl enable NetworkManager
 chr systemctl enable ntpdate
 
+echo "bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)" > /mnt/home/jotix/arch-user-install.sh
+chmod +x /mnt/home/jotix/arch-user-install.sh
+chr chown jotix /home/jotix/arch-user-install.sh
+
 ### unmount & reboot
 echo "Installation finished, you can do some final asjustements now or reboot and use the new system:
 > umount -R /mnt
-> reboot"
+> reboot
+in the new system execute
+$ bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)"

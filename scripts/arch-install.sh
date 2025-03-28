@@ -222,4 +222,6 @@ chr systemctl enable ntpdate
 echo "Installation finished, you can do some final asjustements now or reboot and use the new system:
 > umount -R /mnt
 > reboot
+Login in the new system with jotix user and run:
+$ bash (curl -fsSL https://jotix.short.gy/arch-user-install | psub)
 "

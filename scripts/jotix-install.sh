@@ -24,6 +24,5 @@ $SCRIPT_PATH/udev-rules-install.sh
 
 # copy filofem script
 if [[ $HOSTNAME == "ffm-arch" ]]; then
-  sudo cp $SCRIPT_PATH/filofem-install.sh /home/filofem/
-  sudo chown filofem /home/filofem/filofem-install.sh
+  $SCRIPT_PATH/filofem-install-maker.sh
 fi

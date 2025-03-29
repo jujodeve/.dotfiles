@@ -31,11 +31,11 @@ mpv
 firefox
 chromium
 plasma
-kde-application
+kde-applications
 tesseract-data-eng
 kitty
 "
 
 sudo pacman -S --noconfirm --needed $PACKAGES
 
-sudo systemctl enable gdm
+sudo systemctl enable sddm

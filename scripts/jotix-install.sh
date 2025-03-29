@@ -7,11 +7,8 @@ set -e
 # install packages
 $SCRIPT_PATH/packages-install.sh
 
-# gnome extension manager
-$SCRIPT_PATH/extension-manager-install.sh
-
-# gnome-settings
-$SCRIPT_PATH/gnome-settings.sh
+# kde-settings
+$SCRIPT_PATH/kde-settings.sh
 
 # printers
 $SCRIPT_PATH/cups-install.sh
@@ -30,4 +27,3 @@ if [[ $HOSTNAME == "ffm-arch" ]]; then
   sudo cp $SCRIPT_PATH/filofem-install.sh /home/filofem/
   sudo chown filofem /home/filofem/filofem-install.sh
 fi
-

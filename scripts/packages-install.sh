@@ -30,8 +30,10 @@ vulkan-radeon
 mpv
 firefox
 chromium
-gnome
-gnome-extra
+plasma
+kde-application
+tesseract-data-eng
+kitty
 "
 
 sudo pacman -S --noconfirm --needed $PACKAGES

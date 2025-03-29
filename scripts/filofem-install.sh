@@ -10,16 +10,7 @@ if [[ ! -d "/mnt/jtx-data/filofem" ]]; then
     exit
 fi
 
-### google chrome
-flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-flatpak install com.google.Chrome --user
-
-mkdir -p $HOME/.var/app/com.google.Chrome/config/
-
-tar -xf /mnt/jtx-data/filofem/google-chrome.tar.xz -C $HOME/.var/app/com.google.Chrome/config/
-
-flatpak override --user --filesystem=~/.local/share/applications:create --filesystem=~/.local/share/icons:create com.google.Chrome
+tar -xf /mnt/jtx-data/filofem/mozilla.tar.xz -C $HOME
 
 ### gnome settings
 dconf write /org/gtk/gtk4/settings/file-chooser/sort-directories-first true
@@ -43,4 +34,3 @@ dconf write /org/gnome/shell/enabled-extensions "[
 ]"
 
 dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
-

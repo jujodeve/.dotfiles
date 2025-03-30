@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # no autosuspend
-kwriteconfig6 --file powerdevilrc --group AC --group SuspendAndShutdown --key AutoSuspendAction = 0
+kwriteconfig6 --file powerdevilrc --group AC --group SuspendAndShutdown --key AutoSuspendAction 0
 
 # single click open item
 kwriteconfig6 --file kdeglobals --group KDE --key SingleClick true

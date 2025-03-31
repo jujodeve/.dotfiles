@@ -28,6 +28,11 @@ mpv
 firefox
 chromium
 hyprland 
+hyprpaper
+hyprlock
+hyprpicker
+hyprcursor
+hyprpolkitagent
 wofi 
 waybar 
 kitty

@@ -15,9 +15,6 @@ exa
 bat
 lsb-release
 usbutils
-ttf-jetbrains-mono
-ttf-jetbrains-mono-nerd
-ttf-ubuntu-font-family
 git
 lazygit
 openssh
@@ -30,12 +27,15 @@ vulkan-radeon
 mpv
 firefox
 chromium
-plasma
-kde-applications
-tesseract-data-eng
+hyprland 
+wofi 
+waybar 
 kitty
+otf-font-awesome
+ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
+ttf-ubuntu-font-family
 "
 
 sudo pacman -S --noconfirm --needed $PACKAGES
 
-sudo systemctl enable sddm

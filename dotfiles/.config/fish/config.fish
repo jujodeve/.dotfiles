@@ -30,7 +30,7 @@ alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
 ### arch-config
-alias cdc 'cd ~/workspace/arch-config'
+alias cdc 'cd ~/.dotfiles'
 
 ### neovim helix
 alias vim nvim

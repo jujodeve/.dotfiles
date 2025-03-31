@@ -31,6 +31,9 @@ hyprland
 wofi 
 waybar 
 kitty
+pulseaudio
+pipewire
+wireplumber
 otf-font-awesome
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd

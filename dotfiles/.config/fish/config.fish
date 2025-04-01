@@ -39,6 +39,9 @@ alias vi nvim
 ### zed
 aliad zed zeditor
 
+### jotix-install
+alias jotix-install ~/.dotfiles/jotix-install.sh
+
 ### other aliases
 alias google_drive_upload "rclone copy ~/Documents jujodeve:"
 alias gdu google_drive_upload

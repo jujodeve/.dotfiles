@@ -36,6 +36,9 @@ alias cdc 'cd ~/.dotfiles'
 alias vim nvim
 alias vi nvim
 
+### zed
+aliad zed zeditor
+
 ### other aliases
 alias google_drive_upload "rclone copy ~/Documents jujodeve:"
 alias gdu google_drive_upload

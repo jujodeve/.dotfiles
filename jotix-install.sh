@@ -100,7 +100,7 @@ gnome-settings() {
         'com.google.Chrome.flextop.chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
         'com.google.Chrome.desktop',
         'org.gnome.Console.desktop',
-        'dev.zed.Zed.desktop',
+        'emacs.desktop',
         'org.gnome.Nautilus.desktop',
         'com.valvesoftware.Steam.desktop',
         'org.gnome.Settings.desktop',
@@ -166,6 +166,7 @@ packages-install() {
     ttf-jetbrains-mono
     ttf-jetbrains-mono-nerd
     ttf-ubuntu-font-family
+    rclone	
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }
@@ -218,34 +219,46 @@ OPTSTRING=":cfgnopsuvyha"
 
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
-	c|a)
+	a)
+	    cups-install
+	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
+	    gnome-install
+	    gnome-settings
+	    google-chrome-install
+	    packages-install
+	    steam-install
+	    udev-rules-install
+	    virt-install
+	    hyprland-install
+	    ;;
+	c)
 	    cups-install
 	    ;;
-	f|a)
+	f)
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    ;;
-	g|a)
+	g)
 	    gnome-install
 	    ;;
-	n|a)
+	n)
 	    gnome-settings
 	    ;;
-	o|a)
+	o)
 	    google-chrome-install
 	    ;;
-	p|a)
+	p)
 	    packages-install
 	    ;;
-	s|a)
+	s)
 	    steam-install
 	    ;;
-	u|a)
+	u)
 	    udev-rules-install
 	    ;;
-	v|a)
+	v)
 	    virt-install
 	    ;;
-	y|a)
+	y)
 	    hyprland-install
 	    ;;
 	*)

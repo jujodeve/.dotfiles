@@ -7,9 +7,6 @@ set -e
 # install packages
 $SCRIPT_PATH/packages-install.sh
 
-# kde-settings
-$SCRIPT_PATH/kde-settings.sh
-
 # printers
 $SCRIPT_PATH/cups-install.sh
 

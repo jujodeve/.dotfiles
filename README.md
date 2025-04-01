@@ -1,14 +1,6 @@
 # Jotix's Arch Linux install scripts & config - dotfiles
 
-## Arch installation
-
-Execute the installation script
-
-    bash <(curl -fsSL https://jotix.short.gy/arch-install)
-
-# General Notes
-
-## Network Printers
+# Network Printers
 
 Edit the Device URI in /etc/cups/printers.conf
 
@@ -31,7 +23,7 @@ Impresora HPRT TP806L
 
     socket://192.168.0.2
 
-## YouTube uBlock shorts filter
+# YouTube uBlock shorts filter
 
     ! Title: Hide YouTube Shorts
     ! Description: Hide all traces of YouTube shorts videos on YouTube
@@ -101,21 +93,21 @@ Impresora HPRT TP806L
     ! Hide shorts tab on channel pages
     m.youtube.com##.single-column-browse-results-tabs>a:has-text(Shorts)
 
-## Launch a virtual monitor with kwin_wayland
+# Launch a virtual monitor with kwin_wayland
 
     export $(dbus-launch); kwin_wayland -s "wayland-1" --xwayland plasmashell
 
-## dd iso file in USB device
+# dd iso file in USB device
 
     dd bs=4M if=path/to/archlinux-version-x86_64.iso of=/dev/disk/by-id/usb-My_flash_drive conv=fsync oflag=direct status=progress
 
-## creating 7z encypted file
+# creating 7z encypted file
 
     s7z a \
       -t7z -m0=lzma2 -mx=9 -mfb=64 \
       -md=32m -ms=on -mhe=on -p'eat_my_shorts' \
       archive.7z dir1
 
-## IP camera as webcam
+# IP camera as webcam
 
     sudo modprobe v4l2loopbak-dkms

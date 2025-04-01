@@ -33,11 +33,11 @@ hyprlock
 hyprpicker
 hyprcursor
 hyprpolkitagent
-wofi 
+rofi-wayland 
 waybar 
 kitty
-pulseaudio
 pipewire
+pipewire-pulse
 wireplumber
 otf-font-awesome
 ttf-jetbrains-mono

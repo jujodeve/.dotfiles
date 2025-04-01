@@ -18,9 +18,10 @@ dconf write /org/gnome/desktop/notifications/show-banners false
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'appmenu:minimize,maximize,close'"
 dconf write /org/gnome/Console/last-window-size '(1200, 900)'
 dconf write /org/gnome/shell/favorite-apps "[
-    'firefox.desktop',
+    'com.google.Chrome.flextop.chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
+    'com.google.Chrome.desktop',
     'org.gnome.Console.desktop',
-    'emacs.desktop',
+    'dev.zed.Zed.desktop',
     'org.gnome.Nautilus.desktop',
     'com.valvesoftware.Steam.desktop',
     'org.gnome.Settings.desktop',
@@ -40,4 +41,3 @@ dconf write /org/gnome/shell/enabled-extensions "[
 ]"
 
 dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
-

@@ -9,7 +9,8 @@ define(){ IFS=$'\n' read -r -d '' ${1} || true; }
 define OPTIONS <<'OPTIONS_END'
 Options
   -c  install cups and printer drivers
-  -f  copy filofem-install.shy script in /home/filofem
+  -d  install/update ad-block throw /etc/host file
+  -f  copy filofem-install.sh script in /home/filofem
   -g  install gnome and enable gdm display manager
   -n  apply gnome-settings
   -o  install google chrome
@@ -65,6 +66,11 @@ cups-install() {
     if [[ $HOSTNAME == "ffm-arch" ]]; then
         sudo lpadmin -p Brother-HL1212W -E -v  "ipp://192.168.0.7/ipp/port1" -m brother-HL1200-cups-en.ppd
     fi
+}
+
+### ad-block hosts file ########################################################
+ad-block-install() {
+    curl -fsSL https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee /etc/hosts
 }
 
 ### filofem install maker ######################################################
@@ -234,6 +240,9 @@ while getopts ${OPTSTRING} opt; do
 	c)
 	    cups-install
 	    ;;
+    d)
+        adblock-install
+        ;;
 	f)
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    ;;

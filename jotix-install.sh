@@ -7,19 +7,19 @@ SCRIPT_PATH=$(dirname $(realpath -s $0))
 define(){ IFS=$'\n' read -r -d '' ${1} || true; }
 
 define OPTIONS <<'OPTIONS_END'
-options
-  -c cups
-  -f filofem
-  -g gnome
-  -n gnome-settings
-  -o chrome
-  -p packages
-  -s steam
-  -u udev-rules
-  -v virtualization
-  -y hyprland
-  -h help
-  -a all
+Options
+  -c  install cups and printer drivers
+  -f  copy filofem-install.shy script in /home/filofem
+  -g  install gnome and enable gdm display manager
+  -n  apply gnome-settings
+  -o  install google chrome
+  -p  install jotix's packages
+  -s  install steam
+  -u  copy udev-rules to /etc/udev/rules.d
+  -v  install libvirt and VM manager
+  -y  install hyprland and tools
+  -a  install all the above options
+  -h  display this message
 OPTIONS_END
 
 define FILO_SCRIPT <<'FILO_SCRIPT_END'

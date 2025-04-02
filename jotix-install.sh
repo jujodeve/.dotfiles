@@ -221,12 +221,15 @@ hyprland-install() {
     sudo pacman -S --noconfirm --needed $PACKAGES
 }
 
+[[ $@ == "" ]] && echo "$OPTIONS"
+
 OPTSTRING=":cfgnopsuvyha"
 
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
 	a)
 	    cups-install
+        adblock-install
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    gnome-install
 	    gnome-settings

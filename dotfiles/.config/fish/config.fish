@@ -37,10 +37,13 @@ alias vim nvim
 alias vi nvim
 
 ### zed
-aliad zed zeditor
+alias zed zeditor
 
 ### jotix-install
 alias jotix-install ~/.dotfiles/jotix-install.sh
+
+### dotfiles-install
+alias dotfiles-install ~/.dotfiles/dotfiles-install.sh
 
 ### other aliases
 alias google_drive_upload "rclone copy ~/Documents jujodeve:"

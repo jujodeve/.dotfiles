@@ -83,7 +83,7 @@ filofem-install-maker() {
 
 ### gnome ######################################################################
 gnome-install() {
-    sudo pacman -S gnome gnome-extra
+    sudo pacman -S gnome gnome-extra gnome-themes-extra
 
     sudo systemctl enable gdm
 
@@ -117,7 +117,7 @@ gnome-settings() {
 
     dconf write /org/gnome/desktop/interface/cursor-theme "'Adwaita'"
     dconf write /org/gnome/desktop/interface/icon-theme "'Adwaita'"
-    dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+    dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
     dconf write /org/gnome/shell/enabled-extensions "[
         'dash-to-dock@micxgx.gmail.com',

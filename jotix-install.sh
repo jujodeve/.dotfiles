@@ -69,7 +69,7 @@ cups-install() {
 }
 
 ### ad-block hosts file ########################################################
-ad-block-install() {
+adblock-install() {
     curl -fsSL https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | sudo tee /etc/hosts
 }
 
@@ -223,13 +223,13 @@ hyprland-install() {
 
 [[ $@ == "" ]] && echo "$OPTIONS"
 
-OPTSTRING=":cfgnopsuvyha"
+OPTSTRING=":acdfgnopsuvyh"
 
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
 	a)
 	    cups-install
-        adblock-install
+            adblock-install
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    gnome-install
 	    gnome-settings
@@ -243,9 +243,9 @@ while getopts ${OPTSTRING} opt; do
 	c)
 	    cups-install
 	    ;;
-    d)
-        adblock-install
-        ;;
+	d)
+            adblock-install
+            ;;
 	f)
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    ;;

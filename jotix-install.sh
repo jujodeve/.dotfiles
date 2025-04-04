@@ -26,12 +26,6 @@ OPTIONS_END
 define FILO_SCRIPT <<'FILO_SCRIPT_END'
 #!/usr/bin/env bash
 
-### google chrome permissions
-
-mkdir -p ~/.local/share/applications
-mkdir -p ~/.local/share/icons
-flatpak override --user --filesystem=~/.local/share/applications --filesystem=~/.local/share/icons com.google.Chrome
-
 ### gnome settings
 dconf write /org/gtk/gtk4/settings/file-chooser/sort-directories-first true
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'small'"
@@ -42,8 +36,8 @@ dconf write /org/gnome/desktop/notifications/show-banners false
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'appmenu:minimize,maximize,close'"
 dconf write /org/gnome/Console/last-window-size '(1200, 900)'
 dconf write /org/gnome/shell/favorite-apps "[
-  'com.google.Chrome.flextop.chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
-  'com.google.Chrome.desktop',
+  'chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
+  'google-chrome.desktop',
   'org.gnome.Calculator.desktop'
 ]"
 dconf write /org/gnome/shell/enabled-extensions "[
@@ -103,8 +97,8 @@ gnome-settings() {
     dconf write /org/gnome/desktop/wm/preferences/button-layout "'appmenu:minimize,maximize,close'"
     dconf write /org/gnome/Console/last-window-size '(1200, 900)'
     dconf write /org/gnome/shell/favorite-apps "[
-        'com.google.Chrome.flextop.chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
-        'com.google.Chrome.desktop',
+        'chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
+        'google-chrome.desktop',
         'org.gnome.Console.desktop',
         'org.gnome.Nautilus.desktop',
         'com.valvesoftware.Steam.desktop',
@@ -123,7 +117,7 @@ gnome-settings() {
         'apps-menu@gnome-shell-extensions.gcampax.github.com',
         'tiling-assistant@leleat-on-github'
     ]"
-    
+
     # gnome-text-editor
     dconf write /org/gnome/TextEditor/show-line-numbers true
     dconf write /org/gnome/TextEditor/highlight-current-line true
@@ -131,21 +125,19 @@ gnome-settings() {
     dconf write /org/gnome/TextEditor/show-right-margin true
     dconf write /org/gnome/TextEditor/indent-style "'space'"
     dconf write /org/gnome/TextEditor/tab-width 'uint32 4'
-    
+
     # keyboard-layout
     dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
 }
 
 ### google chrome ##############################################################
 google-chrome-install() {
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-    flatpak install com.google.Chrome
-
-    mkdir -p ~/.local/share/applications
-    mkdir -p ~/.local/share/icons
-
-    flatpak override --user --filesystem=~/.local/share/applications --filesystem=~/.local/share/icons com.google.Chrome
+    mkdir -p ~/workspace
+    cd ~/workspace
+    git clone https://aur.archlinux.org/google-chrome.git
+    cd google-chrome
+    makepkg -s
+    sudo pacman -U ./*.zst
 }
 
 ### install packages
@@ -180,7 +172,7 @@ packages-install() {
     ttf-jetbrains-mono-nerd
     ttf-ubuntu-font-family
     rclone
-    helix	
+    helix
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }

@@ -30,7 +30,7 @@ alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
 ### arch-config
-alias cdc 'cd ~/.dotfiles'
+alias cdc 'cd ~/.arch-config'
 
 ### helix
 alias hx helix
@@ -42,10 +42,10 @@ alias vi helix
 alias zed zeditor
 
 ### jotix-install
-alias jotix-install ~/.dotfiles/jotix-install.sh
+alias jotix-install ~/.arch-config/jotix-install.sh
 
 ### dotfiles-install
-alias dotfiles-install ~/.dotfiles/dotfiles-install.sh
+alias dotfiles-install ~/.arch-config/dotfiles-install.sh
 
 ### other aliases
 alias google_drive_upload "rclone copy ~/Documents jujodeve:"

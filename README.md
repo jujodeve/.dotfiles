@@ -7,10 +7,8 @@ The partitions must be present, labeled and formated as specified in the folowin
 | Part Type | Label    | subvolumes | mountpoints |
 | --------- | -------- | ---------- | ----------- |
 | fat32     | EFI      | -          | /boot/efi   |
-|           |          |            |             |
 | btrfs     | system   | @arch      | /           |
 |           |          | @pkg       | /var/cache/pacman/pkg |
-|           |          |            |             |
 | btrfs     | jtx-data | @home      | /home       |
 
 ## Arch installation

@@ -106,7 +106,6 @@ gnome-settings() {
         'com.google.Chrome.flextop.chrome-knipfmibhjlpioflafbpemngnoncknab-Default.desktop',
         'com.google.Chrome.desktop',
         'org.gnome.Console.desktop',
-        'emacs.desktop',
         'org.gnome.Nautilus.desktop',
         'com.valvesoftware.Steam.desktop',
         'org.gnome.Settings.desktop',
@@ -124,7 +123,16 @@ gnome-settings() {
         'apps-menu@gnome-shell-extensions.gcampax.github.com',
         'tiling-assistant@leleat-on-github'
     ]"
-
+    
+    # gnome-text-editor
+    dconf write /org/gnome/TextEditor/show-line-numbers true
+    dconf write /org/gnome/TextEditor/highlight-current-line true
+    dconf write /org/gnome/TextEditor/show-map true
+    dconf write /org/gnome/TextEditor/show-right-margin true
+    dconf write /org/gnome/TextEditor/indent-style "'space'"
+    dconf write /org/gnome/TextEditor/tab-width 'uint32 4'
+    
+    # keyboard-layout
     dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
 }
 
@@ -161,7 +169,6 @@ packages-install() {
     openssh
     fastfetch
     neovim
-    emacs
     mesa
     xf86-video-amdgpu
     vulkan-radeon
@@ -172,7 +179,8 @@ packages-install() {
     ttf-jetbrains-mono
     ttf-jetbrains-mono-nerd
     ttf-ubuntu-font-family
-    rclone	
+    rclone
+    helix	
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }

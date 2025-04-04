@@ -32,9 +32,11 @@ alias gr gitroot
 ### arch-config
 alias cdc 'cd ~/.dotfiles'
 
-### neovim helix
-alias vim nvim
-alias vi nvim
+### helix
+alias hx helix
+alias nvim helix
+alias vim helix
+alias vi helix
 
 ### zed
 alias zed zeditor

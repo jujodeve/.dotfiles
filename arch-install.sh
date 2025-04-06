@@ -2,8 +2,13 @@
 
 set -e
 
-if [[ ! -b /dev/disk/by-label/system ]] || [[ ! -b /dev/disk/by-label/jtx-data ]]; then
-    echo "system & jtx-data must be present"
+if [[ ! -b /dev/disk/by-label/arch-efi ]]; then
+    echo "arch-efi labeled fat32 partition must be present"
+    exit
+fi
+
+if [[ ! -b /dev/disk/by-label/arch ]] || [[ ! -b /dev/disk/by-label/jtx-data ]]; then
+    echo "arch & jtx-data labeled btrfs FS must be present"
     exit
 fi
 
@@ -43,18 +48,25 @@ fi
 
 ### disk configuration ########################################################
 
+### EFI
+# fat32 LABEL=arch-efi 
+#
 # Subvolumes Layout
-### system disk
-# @arch      /
+### arch disk
+# @          /
+# @log       /var/log
 # @pkg       /var/cache/pacman/pkg
-
+# @snapshots /.snapshots
+#
 ### jtx-data disk
 # @home        /home
 
-# create subvolumes in system disk
-mount LABEL=system /mnt
-[[ ! -d /mnt/@arch ]] && btrfs subvolume create /mnt/@arch
+# create subvolumes in arch disk
+mount LABEL=arch /mnt
+[[ ! -d /mnt/@ ]] && btrfs subvolume create /mnt/@
+[[ ! -d /mnt/@log ]] && btrfs subvolume create /mnt/@log
 [[ ! -d /mnt/@pkg ]] && btrfs subvolume create /mnt/@pkg
+[[ ! -d /mnt/@snapshots ]] && btrfs subvolume create /mnt/@snapshots
 umount -R /mnt
 
 # create subvolume in jtx-data disk
@@ -62,26 +74,41 @@ mount LABEL=jtx-data /mnt
 [[ ! -d /mnt/@home ]] && btrfs subvolume create /mnt/@home
 umount -R /mnt
 
-# make the directories
-mount LABEL=system /mnt -osubvol=/@arch
+### make the directories & mounting
+
+mount LABEL=arch /mnt -osubvol=/@
+
+# EFI
 mkdir -p /mnt/boot/efi
-mkdir -p /mnt/home
+mount LABEL=arch-efi /mnt/boot/efi
+
+# log
+mkdir -p /mnt/var/log
+mount LABEL=arch /mnt/var/log
+
+# pkg
 mkdir -p /mnt/var/cache/pacman/pkg
-mkdir -p /mnt/mnt/system
-mkdir -p /mnt/mnt/jtx-data
+mount LABEL=arch /mnt/var/cache/pacman/pkg -osubvol=/@pkg
 
-# mount ESP part
-mount LABEL=EFI /mnt/boot/efi
+# snapshots
+mkdir /mnt/.snapshots
+mount LABEL=arch /mnt/.snapshots -osubvol=@snapshots
 
-# mounting btrfs main disk subvolumes
-mount LABEL=system /mnt/var/cache/pacman/pkg -osubvol=/@pkg
-mount LABEL=system /mnt/mnt/system -osubvol=/
-
-# mount home
+# home
+mkdir -p /mnt/home
 mount LABEL=jtx-data /mnt/home -osubvol=/@home
+
+### extra disks
+
+# arch
+mkdir -p /mnt/mnt/arch
+mount LABEL=arch /mnt/mnt/arch -osubvol=/
+
+# jtx-data
+mkdir -p /mnt/mnt/jtx-data
 mount LABEL=jtx-data /mnt/mnt/jtx-data -osubvol=/
 
-# extra disks
+# jtx-ssd
 if [[ -b "/dev/disk/by-label/jtx-ssd" ]]; then
   mkdir -p /mnt/mnt/jtx-ssd
   mount LABEL=jtx-ssd /mnt/mnt/jtx-ssd -osubvol=/

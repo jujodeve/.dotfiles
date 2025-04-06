@@ -132,6 +132,7 @@ gnome-settings() {
 
 ### google chrome ##############################################################
 google-chrome-install() {
+    [[ -d /workspace/google-chrome ]] && rm $HOME/workspace/google-chrome -rf
     mkdir -p ~/workspace
     cd ~/workspace
     git clone https://aur.archlinux.org/google-chrome.git

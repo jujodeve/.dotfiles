@@ -122,11 +122,17 @@ gnome-settings() {
 
     # keyboard-layout
     dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
+
+    # default fonts
+    dconf write /org/gnome/desktop/interface/font-name "'Adwaita Sans 10'"
+    dconf write /org/gnome/desktop/interface/document-font-name "'Adwaita Sans 10'"
+    dconf write /org/gnome/desktop/interface/monospace-font-name "'Adwaita Mono 10'"
+
 }
 
 ### google chrome ##############################################################
 google-chrome-install() {
-    [[ -d /workspace/google-chrome ]] && rm $HOME/workspace/google-chrome -rf
+    [[ -d ~/workspace/google-chrome ]] && rm ~/workspace/google-chrome -rf
     mkdir -p ~/workspace
     cd ~/workspace
     git clone https://aur.archlinux.org/google-chrome.git
@@ -141,7 +147,6 @@ packages-install() {
     arch-install-scripts
     exfat-utils
     dosfstools
-    base-devel
     cmake
     fish
     less
@@ -224,7 +229,6 @@ while getopts ${OPTSTRING} opt; do
     case ${opt} in
 	a)
 	    cups-install
-            adblock-install
 	    [[ $HOSTNAME == "ffm-arch" ]] && filofem-install-maker
 	    gnome-install
 	    gnome-settings

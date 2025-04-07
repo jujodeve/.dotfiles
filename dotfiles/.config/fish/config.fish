@@ -32,11 +32,9 @@ alias gr gitroot
 ### arch-config
 alias cdc 'cd ~/.arch-config'
 
-### helix
-alias hx helix
-alias nvim helix
-alias vim helix
-alias vi helix
+### neovim
+alias vim nvim
+alias vi nvim
 
 ### zed
 alias zed zeditor

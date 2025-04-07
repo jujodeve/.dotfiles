@@ -167,7 +167,7 @@ packages-install() {
     ttf-jetbrains-mono-nerd
     ttf-ubuntu-font-family
     rclone
-    helix
+    wl-clipboard
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }

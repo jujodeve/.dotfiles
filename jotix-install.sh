@@ -128,6 +128,9 @@ gnome-settings() {
     dconf write /org/gnome/desktop/interface/document-font-name "'Adwaita Sans 10'"
     dconf write /org/gnome/desktop/interface/monospace-font-name "'Adwaita Mono 10'"
 
+    # dynamic workspaces
+    dconf write /org/gnome/mutter/dynamic-workspaces false
+    dconf write /org/gnome/desktop/wm/preferences/num-workspaces 4
 }
 
 ### google chrome ##############################################################

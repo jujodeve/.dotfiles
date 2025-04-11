@@ -5,7 +5,7 @@ TTC_PATH="/steamapps/compatdata/306130/pfx/drive_c/users/steamuser/Documents/Eld
 
 JTX_STEAM_PATH="/mnt/jtx-ssd/SteamLibrary"
 
-FFM_STEAM_PATH="/home/jotix/.local/share/Steam"
+FFM_STEAM_PATH="/home/jotix/.var/app/com.valvesoftware.Steam/.steam/steam"
 
 if [[ "$HOSTNAME" == "jtx-arch" ]]; then
     TTC_PATH=$JTX_STEAM_PATH$TTC_PATH

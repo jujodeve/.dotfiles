@@ -9,8 +9,11 @@ end
 set -g -x EDITOR nvim
 set -g -x VISUAL nvim
 set -g -x SYSTEMD_EDITOR nvim
-set -g -x PATH $PATH:~/.local/bin:~/.scripts
+#set -g -x PATH $PATH:~/.local/bin:~/.scripts
 set -g -x GOPATH ~/go
+
+## PATH
+fish_add_path -g /home/jotix/.scripts
 
 ### exa/ls aliases
 alias ls 'ls --color=auto'

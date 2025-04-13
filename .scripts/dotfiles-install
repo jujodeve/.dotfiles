@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd $HOME
+
 git clone --bare git@github.com:jujodeve/.dotfiles.git $HOME/.dotfiles
 
 function dotfiles {
@@ -13,7 +15,7 @@ if [ $? = 0 ]; then
     echo "Checked out dotfiles.";
 else
     echo "Backing up pre-existing dotfiles.";
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} rm {} # mv {} .dotfiles-backup/{}
 fi;
 
 dotfiles checkout

@@ -20,4 +20,4 @@ fi;
 
 dotfiles checkout
 
-dotfiles status.showUntrackedFiles no
+dotfiles config status.showUntrackedFiles no

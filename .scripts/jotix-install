@@ -223,8 +223,11 @@ hyprland-install() {
     kitty
     wl-clipboard
     blueman
+    bluez
+    bluez-utils
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
+    sudo systemctl enable bluetooth.service --now
 }
 
 [[ $@ == "" ]] && echo "$OPTIONS"

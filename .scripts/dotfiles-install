@@ -1,33 +1,21 @@
 #!/usr/bin/env bash
 
-SCRIPT_PATH=$(dirname $(realpath -s $0))
+git clone --bare git@github.com:jujodeve/.dotfiles.git $HOME/.dotfiles
 
-DOTFILES_PATH=$HOME/.dotfiles
-
-TARGET_PATH=$HOME
-
-process-file() {
-
-    FILE=$1
-    DIR=$2
-    FILE_RELATIVE=$(echo $FILE | sed "s,$2,,g")
-    DESTINY=$TARGET_PATH$FILE_RELATIVE
-
-    CMD=""
-
-    [[ -d $FILE ]] && [[ ! -d $DESTINY ]] && mkdir -p $DESTINY
-
-    [[ -f $DESTINY ]] && mv $DESTINY $DESTINY.backup
-
-    [[ -f $FILE ]] && echo procesing $DESTINY && ln -sf $FILE $DESTINY
-
+function dotfiles {
+    git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
-process-dir() {
-    DIR=$1
-    find $DIR | while read -r file; do  process-file $file $DIR; done
-}
+mkdir -p .dotfiles-backup
+dotfiles checkout
 
-echo
-echo Linking dotfiles.
-process-dir $DOTFILES_PATH
+if [ $? = 0 ]; then
+    echo "Checked out dotfiles.";
+else
+    echo "Backing up pre-existing dotfiles.";
+    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+fi;
+
+dotfiles checkout
+
+dotfiles status.showUntrackedFiles no

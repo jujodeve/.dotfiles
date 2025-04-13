@@ -3,7 +3,7 @@
 git clone --bare git@github.com:jujodeve/.dotfiles.git $HOME/.dotfiles
 
 function dotfiles {
-    git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
 mkdir -p .dotfiles-backup

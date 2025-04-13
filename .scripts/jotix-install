@@ -213,6 +213,7 @@ hyprland-install() {
     PACKAGES="
     hyprland
     hyprpaper
+    hypridle
     hyprlock
     hyprpicker
     hyprcursor
@@ -220,6 +221,8 @@ hyprland-install() {
     rofi-wayland
     waybar
     kitty
+    wl-clipboard
+    blueman
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }

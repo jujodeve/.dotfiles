@@ -32,8 +32,8 @@ alias cat bat
 alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
-### dotfiles management
-alias dotfiles 'git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+### cd in arch-config 
+alias cdc 'cd ~/workspace/arch-config'
 
 ### neovim
 alias vim nvim

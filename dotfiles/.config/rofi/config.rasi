@@ -156,4 +156,5 @@ configuration {
   }
 }
 
-@theme "~/.config/rofi/themes/Arc-Dark.rasi"
+
+@theme "/usr/share/rofi/themes/arthur.rasi"

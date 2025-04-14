@@ -176,6 +176,7 @@ packages-install() {
     ttf-ubuntu-font-family
     rclone
     wl-clipboard
+    flatpak
     "
     sudo pacman -S --noconfirm --needed $PACKAGES
 }

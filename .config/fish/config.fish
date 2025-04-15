@@ -9,7 +9,6 @@ end
 set -g -x EDITOR nvim
 set -g -x VISUAL nvim
 set -g -x SYSTEMD_EDITOR nvim
-#set -g -x PATH $PATH:~/.local/bin:~/.scripts
 set -g -x GOPATH ~/go
 
 ## PATH
@@ -33,7 +32,7 @@ alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
 ### dotfiles
-alias dotfiles '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cdc '~/.dotfiles'
 
 ### neovim
 alias vim nvim

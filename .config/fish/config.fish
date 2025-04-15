@@ -32,7 +32,7 @@ alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
 ### dotfiles
-alias cdc '~/.dotfiles'
+alias cdc 'cd ~/.dotfiles'
 
 ### neovim
 alias vim nvim

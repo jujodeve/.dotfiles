@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+. $(dirname $(realpath -s $0))/functions
+
+install_if_missing "cups ghostscript"
+
+sudo systemctl enable cups --now
+
+sudo pacman -U --noconfirm $(this_file_path)/printer-drivers/*.zst
+
+sudo lpadmin -p XP-58 -E -v 'usb://Printer-58/USB%20Printing%20Support?serial=?' -m xprinterpos/POS-58.ppd
+
+if [[ $HOSTNAME == "ffm-arch" ]]; then
+    sudo lpadmin -p Brother-HL1212W -E -v  "ipp://192.168.0.7/ipp/port1" -m brother-HL1200-cups-en.ppd
+fi

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+. $(dirname $(realpath -s $0))/functions
+
+PACKAGES="
+hyprland
+hyprpaper
+hypridle
+hyprlock
+hyprpicker
+hyprcursor
+hyprpolkitagent
+rofi-wayland
+waybar
+kitty
+wl-clipboard
+blueman
+bluez
+bluez-utils
+pipewire
+pipewire-pulse
+"
+
+install_if_missing $PACKAGES
+
+systemctl enable pipewire --user --now
+
+sudo systemctl enable bluetooth.service --now
+

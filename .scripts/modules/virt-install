@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+. $(dirname $(realpath -s $0))/functions
+
+install_if_missing libvirt iptables-nft dnsmasq dmidecode virt-manager qemu-full
+
+sudo usermod -a -G libvirt jotix
+
+sudo systemctl enable libvirtd.service --now

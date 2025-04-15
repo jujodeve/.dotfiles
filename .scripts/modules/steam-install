@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+. $(dirname $(realpath -s $0))/functions
+
+install_if_missing flatpak
+
+flatpak install com.valvesoftware.Steam
+
+flatpak override --filesystem=/mnt/jtx-ssd com.valvesoftware.Steam --user
+
+[[ -b "/dev/disk/by-label/jtx-nvme" ]] && flatpak override --filesystem=/mnt/jtx-nvme com.valvesoftware.Steam --user

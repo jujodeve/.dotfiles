@@ -21,7 +21,9 @@ process-file() {
 
     [[ -f $DESTINY ]] && mv $DESTINY $DESTINY.backup
 
-    [[ -f $FILE ]] && [[ "$FILE" != "$THIS_SCRIPT" ]] && echo procesing $FILE && ln -sf $FILE $DESTINY
+    [[ -f $FILE ]] && [[ "$FILE" != "$THIS_SCRIPT" ]] && \
+        [[ "$FILE" != "$DOTFILES_PATH/README.md" ]] && \
+        echo procesing $FILE && ln -sf $FILE $DESTINY
 
 }
 

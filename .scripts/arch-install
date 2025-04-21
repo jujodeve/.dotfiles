@@ -82,7 +82,7 @@ mount LABEL=arch /mnt -osubvol=/@
 mount --mkdir LABEL=arch-efi /mnt/boot/efi
 
 # log
-mount --mkdir LABEL=arch /mnt/var/log
+mount --mkdir LABEL=arch /mnt/var/log -osubvol=/@log
 
 # pkg
 mount --mkdir LABEL=arch /mnt/var/cache/pacman/pkg -osubvol=/@pkg

@@ -99,7 +99,7 @@ mount --mkdir LABEL=arch-home /mnt/home -osubvol=/@home
 mount --mkdir LABEL=arch /mnt/mnt/arch -osubvol=/
 
 # arch-home
-mount --mkdir LABEL=arch-home /mnt/arch-home -osubvol=/
+mount --mkdir LABEL=arch-home /mnt/mnt/arch-home -osubvol=/
 
 # jtx-data
 [[ -b "/dev/disk/by-label/jtx-data" ]] && mount --mkdir LABEL=jtx-data /mnt/mnt/jtx-data -osubvol=/

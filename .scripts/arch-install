@@ -7,8 +7,8 @@ if [[ ! -b /dev/disk/by-label/arch-efi ]]; then
     exit
 fi
 
-if [[ ! -b /dev/disk/by-label/arch ]] || [[ ! -b /dev/disk/by-label/jtx-data ]]; then
-    echo "arch & jtx-data labeled btrfs FS must be present"
+if [[ ! -b /dev/disk/by-label/arch ]] || [[ ! -b /dev/disk/by-label/arch-home ]]; then
+    echo "arch & arch-home labeled btrfs partition must be present"
     exit
 fi
 
@@ -54,18 +54,24 @@ fi
 # btrfs LABEL=arch
 # Subvolumes Layout
 # @          /
-# @home      /home
 # @log       /var/log
 # @pkg       /var/cache/pacman/pkg
 # @snapshots /.snapshots
+#
+# btrfs LABEL=arch-home
+# @home      /home
 
 # create subvolumes in arch disk
 mount LABEL=arch /mnt
 [[ ! -d /mnt/@ ]] && btrfs subvolume create /mnt/@
-[[ ! -d /mnt/@home ]] && btrfs subvolume create /mnt/@home 
 [[ ! -d /mnt/@log ]] && btrfs subvolume create /mnt/@log
 [[ ! -d /mnt/@pkg ]] && btrfs subvolume create /mnt/@pkg
 [[ ! -d /mnt/@snapshots ]] && btrfs subvolume create /mnt/@snapshots
+umount -R /mnt
+
+# create home subvolume in arch-home
+mount LABEL=arch-home /mnt
+[[ ! -d /mnt/@home ]] && btrfs subvolume create /mnt/@home 
 umount -R /mnt
 
 ### make the directories & mounting
@@ -85,18 +91,18 @@ mount --mkdir LABEL=arch /mnt/var/cache/pacman/pkg -osubvol=/@pkg
 mount --mkdir LABEL=arch /mnt/.snapshots -osubvol=@snapshots
 
 # home
-mount --mkdir LABEL=arch /mnt/home -osubvol=/@home
+mount --mkdir LABEL=arch-home /mnt/home -osubvol=/@home
 
 ### extra disks
 
 # arch
-mount --mkfdir LABEL=arch /mnt/mnt/arch -osubvol=/
+mount --mkdir LABEL=arch /mnt/mnt/arch -osubvol=/
 
-# jtx-nvme
-[[ -b "/dev/disk/by-label/jtx-nvme" ]] && mount --mkdir LABEL=jtx-data /mnt/mnt/jtx-data -osubvol=/
+# arch-home
+mount --mkdir LABEL=arch-home /mnt/arch-home -osubvol=/
 
-# jtx-ssd
-[[ -b "/dev/disk/by-label/jtx-ssd" ]] && mount --mkdir LABEL=jtx-ssd /mnt/mnt/jtx-ssd -osubvol=/
+# jtx-data
+[[ -b "/dev/disk/by-label/jtx-data" ]] && mount --mkdir LABEL=jtx-data /mnt/mnt/jtx-data -osubvol=/
 
 ### enable parallel downloads
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf

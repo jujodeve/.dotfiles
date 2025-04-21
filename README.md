@@ -1,21 +1,4 @@
-# Jotix's Arch Linux install scripts & config - dotfiles
-
-## Requeriments
-
-The partitions must be present, labeled and formated as specified in the folowing table
-
-| Part Type | Label    | subvolumes | mountpoints |
-| --------- | -------- | ---------- | ----------- |
-| fat32     | EFI      | -          | /boot/efi   |
-| btrfs     | system   | @arch      | /           |
-|           |          | @pkg       | /var/cache/pacman/pkg |
-| btrfs     | jtx-data | @home      | /home       |
-
-## Arch installation
-
-Execute the installation script
-
-    bash <(curl -fsSL https://jotix.short.gy/arch-install)
+# Jotix's Arch dotfiles
 
 # Network Printers
 

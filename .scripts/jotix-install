@@ -2,7 +2,11 @@
 
 set -e
 
-. $(dirname $(realpath -s $0))/functions
+this_file_path() {
+    echo $(dirname $(realpath -s $0))
+}
+
+. $(this_file_path)/functions
 
 ### INSTALL PACKAGES ############################################################
 PACKAGES="

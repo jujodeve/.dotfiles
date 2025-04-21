@@ -69,3 +69,7 @@ flatpak override --filesystem=/home/jotix com.google.Chrome --user
 flatpak install com.brave.Browser
 flatpak override --filesystem=/home/jotix com.brave.Browser --user
 
+### GNOME SETTINGS ##############################################################
+$(this_file_path)/gnome-settings
+
+

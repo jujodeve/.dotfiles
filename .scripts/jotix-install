@@ -27,7 +27,7 @@ libvirt iptables-nft dnsmasq dmidecode virt-manager qemu-full
 "
 install_if_missing $PACKAGES
 
-sudo pacman -U --noconfirm $(this_file_path)/printer-drivers/*.zst
+sudo pacman -U --noconfirm --needed $(this_file_path)/printer-drivers/*.zst
 
 # gnome extension manager
 flatpak install flathub com.mattjakeman.ExtensionManager

@@ -55,6 +55,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugings --------------------------------------------------------------------
 require("lazy").setup({
+
+    { 'echasnovski/mini.nvim', version = false },
+
     "nvim-lualine/lualine.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",

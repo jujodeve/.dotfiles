@@ -34,7 +34,7 @@ sudo systemctl enable bluetooth.service --now
 # enable gdm
 sudo systemctl enable gdm
 # enable pipewire
-systemctl enable pipewire --user --now
+systemctl enable pipewire --now
 # enable cups
 sudo systemctl enable cups --now
 # virtualization

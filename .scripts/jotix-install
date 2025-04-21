@@ -8,7 +8,7 @@ this_file_path() {
 
 . $(this_file_path)/functions
 
-### INSTALL PACKAGES ############################################################
+### INSTALL PACKAGES ##########################################################
 PACKAGES="
 arch-install-scripts exfat-utils dosfstools
 cmake fish less man-pages man-db
@@ -33,7 +33,7 @@ sudo pacman -U --noconfirm --needed $(this_file_path)/printer-drivers/*.zst
 # gnome extension manager
 flatpak install flathub com.mattjakeman.ExtensionManager
 
-### ENABLING SERVICES ###########################################################
+### ENABLING SERVICES #########################################################
 # enable bluetooth
 sudo systemctl enable bluetooth.service --now
 # enable gdm
@@ -44,35 +44,27 @@ sudo systemctl enable cups --now
 sudo usermod -a -G libvirt jotix
 sudo systemctl enable libvirtd.service --now
 
-### ADDING PRINTERS #############################################################
-sudo lpadmin -p XP-58 -E -v 'usb://Printer-58/USB%20Printing%20Support?serial=?' -m xprinterpos/POS-58.ppd
+### ADDING PRINTERS ###########################################################
+sudo lpadmin -p XP-58 -E -v \
+    'usb://Printer-58/USB%20Printing%20Support?serial=?' \
+    -m xprinterpos/POS-58.ppd
 
-if [[ $HOSTNAME == "ffm-arch" ]]; then
-    sudo lpadmin -p Brother-HL1212W -E -v  "ipp://192.168.0.7/ipp/port1" -m brother-HL1200-cups-en.ppd
-fi
+[[ $HOSTNAME == "ffm-arch" ]] && sudo lpadmin -p Brother-HL1212W -E -v  \
+    "ipp://192.168.0.7/ipp/port1" -m brother-HL1200-cups-en.ppd
 
-### UCEV RULES ##################################################################
+### UCEV RULES ################################################################
 sudo cp $(this_file_path)/udev/* /etc/udev/rules.d/ -v
 
 ### reload rules
 sudo udevadm control --reload
 sudo udevadm trigger
 
-### STEAM #######################################################################
-flatpak install com.valvesoftware.Steam
-flatpak override --filesystem=/mnt/jtx-ssd com.valvesoftware.Steam --user
-[[ -b "/dev/disk/by-label/jtx-nvme" ]] && flatpak override \
-    --filesystem=/mnt/jtx-nvme com.valvesoftware.Steam --user
-
-### GOOGLE CHROME ###############################################################
-flatpak install com.google.Chrome
-flatpak override --filesystem=/home/jotix com.google.Chrome --user
-
-### BRAVE BROWSER ###############################################################
-# flatpak install com.brave.Browser
-# flatpak override --filesystem=/home/jotix com.brave.Browser --user
-
-### GNOME SETTINGS ##############################################################
+### GNOME SETTINGS ############################################################
 $(this_file_path)/gnome-settings
 
+### STEAM #####################################################################
+flatpak install com.valvesoftware.Steam
+
+[[ -d "/mnt/jtx-data" ]] && flatpak override \
+    --filesystem=/mnt/jtx-data com.valvesoftware.Steam --user
 

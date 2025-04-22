@@ -5,9 +5,6 @@
 define FILO_SCRIPT <<'FILO_SCRIPT_END'
 #!/usr/bin/env bash
 
-### google-chrome permisions
-flatpak overrife --filesystem=/home/filofem com.google.Chrome --user
-
 ### gnome settings
 dconf write /org/gtk/gtk4/settings/file-chooser/sort-directories-first true
 dconf write /org/gnome/nautilus/icon-view/default-zoom-level "'small'"
@@ -32,5 +29,5 @@ FILO_SCRIPT_END
 
 echo "$FILO_SCRIPT" | sudo tee /home/filofem/filofem-install.sh
 
-sudo chmod +x /home/filofem/filofem-install.sh
-sudo chown filofem /home/filofem/filofem-install.sh
+sudo chmod +x /home/filofem/filofem-gnome-settings.sh
+sudo chown filofem /home/filofem/filofem-gnome-settings.sh

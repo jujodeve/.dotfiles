@@ -68,3 +68,13 @@ flatpak install com.valvesoftware.Steam
 [[ -d "/mnt/jtx-data" ]] && flatpak override \
     --filesystem=/mnt/jtx-data com.valvesoftware.Steam --user
 
+### YAY #######################################################################
+mkdir -p ~/workspace
+cd ~/workspace
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -s
+makepkg --install
+
+### GOOGLE-CHROME ##############################################################
+yay -S google-chrome

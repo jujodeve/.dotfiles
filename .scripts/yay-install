@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-mkdir -p ~/workspace
-cd ~/workspace
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -s
-makepkg --install
-

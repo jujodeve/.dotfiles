@@ -32,7 +32,7 @@ alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
 ### dotfiles
-alias dotfiles "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $argv"
+alias dotfiles "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 ### neovim
 alias vim nvim

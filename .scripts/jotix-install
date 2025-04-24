@@ -21,23 +21,22 @@ rclone wl-clipboard flatpak
 hyprland hyprpaper hypridle hyprlock hyprpicker hyprcursor hyprpolkitagent
 rofi-wayland waybar kitty wl-clipboard blueman
 bluez bluez-utils pipewire pipewire-pulse
-gnome gnome-extra gnome-themes-extra
+plasma kde-applications
 firefox
 cups ghostscript
 libvirt iptables-nft dnsmasq dmidecode virt-manager qemu-full
+pipewire-jack qt6-multimedia-ffmpeg gnu-free-fonts
+phonon-qt6-mpv pyside6 cronie tesseract-data-eng
 "
 install_if_missing $PACKAGES
 
 sudo pacman -U --noconfirm --needed $(this_file_path)/printer-drivers/*.zst
 
-# gnome extension manager
-flatpak install flathub com.mattjakeman.ExtensionManager
-
 ### ENABLING SERVICES #########################################################
 # enable bluetooth
 sudo systemctl enable bluetooth.service --now
-# enable gdm
-sudo systemctl enable gdm
+# enable sddm
+sudo systemctl enable sddm
 # enable cups
 sudo systemctl enable cups --now
 # virtualization
@@ -59,22 +58,13 @@ sudo cp $(this_file_path)/udev/* /etc/udev/rules.d/ -v
 sudo udevadm control --reload
 sudo udevadm trigger
 
-### GNOME SETTINGS ############################################################
-$(this_file_path)/gnome-settings
-
 ### STEAM #####################################################################
 flatpak install com.valvesoftware.Steam
 
 [[ -d "/mnt/jtx-data" ]] && flatpak override \
     --filesystem=/mnt/jtx-data com.valvesoftware.Steam --user
 
-### YAY #######################################################################
-mkdir -p ~/workspace
-cd ~/workspace
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -s
-makepkg --install
-
 ### GOOGLE-CHROME ##############################################################
-yay -S google-chrome
+flatpak install com.google.Chrome
+flatpak override --filesystem=/home/jotix com.google.Chrome --user
+

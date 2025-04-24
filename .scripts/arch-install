@@ -150,6 +150,8 @@ openssh
 fish
 grub
 base-devel
+exa
+bat
 "
 chr pacman -S --noconfirm --needed $PACKAGES
 

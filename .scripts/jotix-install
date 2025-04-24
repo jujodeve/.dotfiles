@@ -64,7 +64,13 @@ flatpak install com.valvesoftware.Steam
 [[ -d "/mnt/jtx-data" ]] && flatpak override \
     --filesystem=/mnt/jtx-data com.valvesoftware.Steam --user
 
-### GOOGLE-CHROME ##############################################################
+### BOTTLES ###################################################################
+flatpak install com.usebottles.bottles
+
+[[ -d "/mnt/jtx-data" ]] && flatpak override \
+    --filesystem=/mnt/jtx-data com.usebottles.bottles --user
+
+### GOOGLE-CHROME #############################################################
 flatpak install com.google.Chrome
 flatpak override --filesystem=/home/jotix com.google.Chrome --user
 

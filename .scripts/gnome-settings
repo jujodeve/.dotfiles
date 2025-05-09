@@ -38,7 +38,11 @@ dconf write /org/gnome/TextEditor/indent-style "'space'"
 dconf write /org/gnome/TextEditor/tab-width 'uint32 4'
 
 # keyboard-layout
-dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
+if [[ $HOSTNAME == "jtx-arch" ]]; then
+    dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
+else
+    dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'es')]"
+fi
 
 # default fonts
 dconf write /org/gnome/desktop/interface/font-name "'Adwaita Sans 10'"

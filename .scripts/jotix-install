@@ -18,14 +18,10 @@ mesa xf86-video-amdgpu vulkan-radeon mpv
 otf-font-awesome ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 ttf-ubuntu-font-family adobe-source-code-pro-fonts
 rclone flatpak
-kitty 
 pipewire pipewire-pulse
-plasma kde-applications
-firefox
 cups ghostscript
 libvirt iptables-nft dnsmasq dmidecode virt-manager qemu-full
-pipewire-jack qt6-multimedia-ffmpeg gnu-free-fonts
-phonon-qt6-mpv pyside6 cronie tesseract-data-eng
+gnome gnome-extra
 "
 install_if_missing $PACKAGES
 
@@ -35,7 +31,7 @@ sudo pacman -U --noconfirm --needed $(this_file_path)/printer-drivers/*.zst
 # enable bluetooth
 sudo systemctl enable bluetooth.service --now
 # enable sddm
-sudo systemctl enable sddm
+sudo systemctl enable gdm
 # enable cups
 sudo systemctl enable cups --now
 # virtualization
@@ -60,16 +56,18 @@ sudo udevadm trigger
 ### STEAM #####################################################################
 flatpak install com.valvesoftware.Steam
 
-[[ -d "/mnt/jtx-data" ]] && flatpak override \
+[[ -d "/mnt/arch-data" ]] && flatpak override \
     --filesystem=/mnt/jtx-data com.valvesoftware.Steam --user
 
-### BOTTLES ###################################################################
-flatpak install com.usebottles.bottles
+### MINION ####################################################################
+flatpak install gg.minion.Minion
 
-[[ -d "/mnt/jtx-data" ]] && flatpak override \
-    --filesystem=/mnt/jtx-data com.usebottles.bottles --user
+[[ -d "/mnt/arch-data" ]] && flatpak override \
+    --filesystem=/mnt/jtx-data gg.minion.Minion --user
 
 ### GOOGLE-CHROME #############################################################
 flatpak install com.google.Chrome
 flatpak override --filesystem=/home/jotix com.google.Chrome --user
 
+# gnome extension manager
+flatpak install flathub com.mattjakeman.ExtensionManager

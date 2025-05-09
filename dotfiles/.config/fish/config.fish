@@ -31,8 +31,8 @@ alias cat bat
 alias gitroot 'cd $(git rev-parse --show-toplevel)'
 alias gr gitroot
 
-### dotfiles
-alias dotfiles "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+### cd dotfiles
+alias cdc 'cd ~/.dotfiles'
 
 ### neovim
 alias vim nvim

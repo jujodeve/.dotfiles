@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. $(dirname $(realpath -s $0))/functions
+. $(dirname $(realpath -s $0))/functions.sh
 
 define FILO_SCRIPT <<'FILO_SCRIPT_END'
 #!/usr/bin/env bash

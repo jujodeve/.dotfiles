@@ -6,7 +6,7 @@ this_file_path() {
     echo $(dirname $(realpath -s $0))
 }
 
-. $(this_file_path)/functions
+. $(this_file_path)/functions.sh
 
 ### INSTALL PACKAGES ##########################################################
 PACKAGES="

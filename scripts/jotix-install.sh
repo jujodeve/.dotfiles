@@ -21,7 +21,7 @@ rclone flatpak
 pipewire pipewire-pulse
 cups ghostscript
 libvirt iptables-nft dnsmasq dmidecode virt-manager qemu-full
-gnome gnome-extra
+gnome gnome-extra gnome-themes-extra
 "
 install_if_missing $PACKAGES
 

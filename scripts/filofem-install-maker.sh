@@ -6,7 +6,7 @@ define FILO_SCRIPT <<'FILO_SCRIPT_END'
 #!/usr/bin/env bash
 
 ### google-chrome permisions
-flatpak overrife --filesystem=/home/filofem com.google.Chrome --user
+flatpak override --filesystem=/home/filofem com.google.Chrome --user
 
 ### gnome settings
 dconf write /org/gtk/gtk4/settings/file-chooser/sort-directories-first true
@@ -28,6 +28,9 @@ dconf write /org/gnome/shell/enabled-extensions "[
   'tiling-assistant@leleat-on-github'
 ]"
 dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+altgr-intl')]"
+
+# keyboard-layout
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'es')]"
 FILO_SCRIPT_END
 
 echo "$FILO_SCRIPT" | sudo tee /home/filofem/filofem-install.sh
